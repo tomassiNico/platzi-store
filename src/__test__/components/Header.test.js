@@ -2,14 +2,14 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import ProviderMock from '../../__mocks__/ProviderMock';
 import Header from '../../components/Header';
-import { TestScheduler } from 'jest';
+import { create } from 'react-test-renderer';
 
 describe('Testing sobre el <Header />', () => {
     
     test('Render del <Header />', () => {
         const header = shallow(
             <ProviderMock>
-                <Header />
+              <Header />
             </ProviderMock>
         );
         
@@ -19,10 +19,22 @@ describe('Testing sobre el <Header />', () => {
     test('Render del titulo', () => {
         const header = mount(
             <ProviderMock>
-            <Header />
+              <Header />
             </ProviderMock>
         );
         
         expect(header.find(".Header-title").text()).toEqual('Platzi Store');
     })
 });
+
+describe('Snapshot de Header', () => {
+    test('Comprobar UI de Header', () => {
+        const header = create(
+            <ProviderMock>
+              <Header />
+            </ProviderMock>
+        );
+
+        expect(header.toJSON()).toMatchSnapshot();
+    })
+})

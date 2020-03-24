@@ -27,4 +27,4 @@ describe('Testing de <Product />', () => {
         wrapper.find('button').simulate('click');
         expect(handleAddToCart).toHaveBeenCalledTimes(1);
     });
-})
+});
